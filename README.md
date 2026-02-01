@@ -1,4 +1,4 @@
-#MPloy 🚀
+# MPloy 
 
 MPloy is a hackathon-built web app that helps students understand how competitive their resume is for a given job posting — before they apply.
 
@@ -52,7 +52,7 @@ Some data, listings, and tickets are placeholders.
 
 Product Manager: Hamza Mustafa
 
-**Engineering Team:**
+**Engineering Team:**  
 Frontend Work: Behruz Omonullaev + Hamza Mustafa  
 Backend Work: Behruz Omonullaev
 
