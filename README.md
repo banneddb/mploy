@@ -56,7 +56,7 @@ Product Manager: Hamza Mustafa
 Frontend Work: Behruz Omonullaev + Hamza Mustafa  
 Backend Work: Behruz Omonullaev
 
-**Quality and Control Team:**
+**Quality and Control Team:**  
 Quality Assurance Lead: Xin Luo  
 Lead Specialist Designer: Kaori Shimoda  
 Coordinator: Alex Buenaseda  
