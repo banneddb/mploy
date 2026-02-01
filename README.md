@@ -49,7 +49,18 @@ Some data, listings, and tickets are placeholders.
 
 👥 Team
 
-Built with ❤️ by the MPloy team.
+
+Product Manager: Hamza Mustafa
+
+**Engineering Team:**
+Frontend Work: Behruz Omonullaev + Hamza Mustafa
+Backend Work: Behruz Omonullaev
+
+**Quality and Control Team:**
+Quality Assurance Lead: Xin Luo
+Lead Specialist Designer: Kaori Shimoda
+Coordinator: Alex Buenaseda
+
 
 ⸻
 
