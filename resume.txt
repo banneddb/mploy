@@ -1,0 +1,54 @@
+Behruz Omonullaev 
+347-759-4045 | behruzomon6@gmail.com | github.com/banneddb | linkedin.com/in/behruzomon 
+EDUCATION 
+Temple University Philadelphia, PA 
+Bachelor of Science in Computer Science with a minor in Statistics August 2023 - May 2027 
+Temple University Honors College: (GPA: 3.8/4.0) 
+● Relevant Coursework: Data Structures, Computer Systems and Low-Level Programming, Operating Systems, Web 
+Design and Development, Object-Oriented Programming 
+PROJECTS & RESEARCH 
+MindScape – Compass | Temple University Hackathon Finalist (2025) React, Vite, HTML, CSS 
+● Built a React-based campus navigation app with customized wayfinding and simplified routing for neurodivergent 
+students. 
+● Optimized initial load time across devices by using Vite’s tree-shaking to eliminate unused JavaScript from the 
+frontend bundle. 
+● Automated linting and Jest unit tests with GitHub Actions, improving local development and testing workflows 
+using Vite. 
+ 
+Tashkent Metro Routing Engine | Back-end Engineer Node.js, Express API, SQL, MySQL 
+● Designed and implemented a normalized MySQL schema modeling 4 metro lines and 50+ stations across 
+Tashkent's 3M population. 
+● Exposed route computation logic through RESTful Express endpoints for frontend or client requests. 
+● Implemented Breadth-First Search (BFS) pathfinding supporting 1000+ shortest paths between stations 
+● Built an async SQL query system in Node.js, eliminating redundant database retrieval when traversing routes. 
+ 
+DictionaryDude - Discord Bot | Back-end Engineer Python, Discord.py 
+● Designed and deployed a Python Discord bot using discord.py to serve dictionary queries for 470k+ words via the 
+Merriam-Webster REST API 
+● Improved API reliability by adding structured exception handling, retry logic, and caching for dictionary requests. 
+● Utilized discord.py’s Pythonic API to design async fetching of definitions, synonyms, and pronunciations from the 
+Merriam-Webster database. 
+ 
+The Influence of Generative AI on Students' Career Projections | Researcher 
+● Conducted mixed-method research on Generative AI’s impact on computing students’ career outlook and 
+presented findings using Python and Tableau dashboards. 
+● Created interactive dashboards and visualizations using Python and Tableau to present findings to CIS faculty 
+EXPERIENCE 
+Undergraduate Researcher Philadelphia, PA 
+Temple Human Computer Interaction Lab January 2025 - Present 
+● Analyzed research data using Python (pandas, NumPy) to identify behavioral trends and correlation, improving 
+data accuracy by 35%. 
+● Contributed to 1 research paper and 2 presentations on emerging trends in human-AI interaction and generative 
+AI impacts on UX. 
+ 
+Software Technology Technician Philadelphia, PA 
+Temple University August 2025 - December 2025 
+● Managed enterprise-level hardware/software deployments, including VR/AR systems, workstation imaging, and 
+system diagnostics. 
+● Resolved 25+ weekly IT infrastructure incidents using Cherwell ticketing and performed OS imaging, hardware 
+diagnostics, and data backups to maintain lab system reliability. 
+ 
+TECHNICAL SKILLS 
+Languages: Java | C/C++ | Python | JavaScript | HTML/CSS | SQL 
+Frameworks & Tools: Node.js | Express | React | Vite | pandas | NumPy | Git/GitHub | JUnit 
+APIs & Databases: MySQL | REST APIs | Discord API | Google Maps/Places API

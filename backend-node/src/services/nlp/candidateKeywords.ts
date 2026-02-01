@@ -1,6 +1,7 @@
-const STOPWORDS = new Set([
+const ROLE_STOPWORDS = new Set([
     "the","and","or","to","of","in","for","a","an","with","on","at","by","from",
-    "is","are","as","be","will","you","we","our","your","this","that","they","their"
+    "is","are","as","be","will","you","we","our","your","this","that","they","their",
+    "software", "engineer", "intern"
   ]);
   
   export function extractCandidateKeywords(jdText: string): string[] {
@@ -13,7 +14,7 @@ const STOPWORDS = new Set([
       .map((t) => t.trim())
       .filter(Boolean)
       .filter((t) => t.length >= 3)
-      .filter((t) => !STOPWORDS.has(t));
+      .filter((t) => !ROLE_STOPWORDS.has(t));
   
     // Deduplicate preserving first appearance
     const seen = new Set<string>();
@@ -24,6 +25,7 @@ const STOPWORDS = new Set([
         unique.push(t);
       }
     }
-  
+
+    return unique.filter((k) => !ROLE_STOPWORDS.has(k));
     return unique.slice(0, 200);
   }
