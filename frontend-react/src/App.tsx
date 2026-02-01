@@ -1,10 +1,59 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { BrowserRouter, Routes, Route, Link, useLocation } from "react-router-dom";
 import { Menu, Bell, User, Settings, Zap, Moon, Sun } from "lucide-react";
+
 import Home from "./pages/Home";
 import ResumeRefiner from "./pages/ResumeRefiner";
 import ListingFinder from "./pages/ListingFinder";
+import Help from "./pages/Help";
+
 import "./App.css";
+
+function RouteTransition({ children }: { children: React.ReactNode }) {
+  const location = useLocation();
+  const [key, setKey] = useState(0);
+  const [dir, setDir] = useState<"forward" | "back">("forward");
+
+  // Define an order for routes so we can infer direction.
+  const order = ["/", "/resume-refiner", "/listing-finder", "/help"];
+
+  const prevIndexRef = useRef<number>(order.indexOf(location.pathname));
+
+  useEffect(() => {
+    const nextIndex = order.indexOf(location.pathname);
+    const prevIndex = prevIndexRef.current;
+
+    if (nextIndex !== -1 && prevIndex !== -1) {
+      setDir(nextIndex >= prevIndex ? "forward" : "back");
+      prevIndexRef.current = nextIndex;
+    }
+
+    setKey((k) => k + 1);
+  }, [location.pathname]);
+
+  const animClass =
+    dir === "forward"
+      ? "animate-[pageInRight_260ms_ease-out]"
+      : "animate-[pageInLeft_260ms_ease-out]";
+
+  return (
+    <>
+      <style>{`
+        @keyframes pageInRight {
+          from { opacity: 0; transform: translateX(14px); }
+          to   { opacity: 1; transform: translateX(0); }
+        }
+        @keyframes pageInLeft {
+          from { opacity: 0; transform: translateX(-14px); }
+          to   { opacity: 1; transform: translateX(0); }
+        }
+      `}</style>
+      <div key={key} className={animClass}>
+        {children}
+      </div>
+    </>
+  );
+}
 
 function Navigation() {
   const [darkMode, setDarkMode] = useState(false);
@@ -13,7 +62,7 @@ function Navigation() {
   const tabs = [
     { id: "/resume-refiner", label: "Resume Refiner" },
     { id: "/listing-finder", label: "Listing Finder" },
-    { id: "/team", label: "Team" },
+    { id: "/help", label: "Help" },
   ];
 
   return (
@@ -70,8 +119,8 @@ function Navigation() {
                           ? "text-[#9fd3c7]"
                           : "text-[#385170]"
                         : darkMode
-                          ? "text-[#9fd3c7]/60 hover:text-[#9fd3c7]"
-                          : "text-[#385170]/60 hover:text-[#385170]"
+                        ? "text-[#9fd3c7]/60 hover:text-[#9fd3c7]"
+                        : "text-[#385170]/60 hover:text-[#385170]"
                     }`}
                   >
                     {tab.label}
@@ -91,7 +140,6 @@ function Navigation() {
 
             {/* Right Section - Actions */}
             <div className="flex items-center gap-3">
-              {/* Icon Buttons */}
               <button
                 className={`p-2.5 rounded-xl transition-all duration-300 hover:scale-105 ${
                   darkMode
@@ -121,11 +169,7 @@ function Navigation() {
                     : "bg-[#385170]/10 text-[#385170] hover:bg-[#385170]/20"
                 }`}
               >
-                {darkMode ? (
-                  <Sun className="w-5 h-5" />
-                ) : (
-                  <Moon className="w-5 h-5" />
-                )}
+                {darkMode ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
               </button>
 
               {/* User Avatar */}
@@ -155,12 +199,14 @@ function Navigation() {
       </header>
 
       {/* Page Content */}
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/resume-refiner" element={<ResumeRefiner />} />
-        <Route path="/listing-finder" element={<ListingFinder />} />
-        <Route path="/team" element={<div className="max-w-7xl mx-auto px-6 py-12"><h1 className="text-4xl font-bold text-[#142d4c] dark:text-[#ececec]">Team Page</h1></div>} />
-      </Routes>
+      <RouteTransition>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/resume-refiner" element={<ResumeRefiner />} />
+          <Route path="/listing-finder" element={<ListingFinder />} />
+          <Route path="/help" element={<Help />} />
+        </Routes>
+      </RouteTransition>
     </div>
   );
 }
