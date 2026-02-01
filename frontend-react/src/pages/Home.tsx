@@ -83,31 +83,14 @@ function StepTimeline() {
   ];
 
   return (
-    <div className="mt-8 grid grid-cols-1 lg:grid-cols-[140px_1fr] gap-8">
-      {/* Left: sticky mini dashboard rail */}
-      <div className="hidden lg:block">
-        <div className="sticky top-28 rounded-2xl border border-gray-200 bg-white p-5 shadow-sm">
-          <div className="text-sm font-semibold text-[#142d4c]">Progress</div>
-          <div className="mt-3 h-56 w-2 rounded-full bg-gray-100 relative overflow-hidden">
-            {/* simple “filled” hint; good enough for hackathon polish */}
-            <div className="absolute top-0 left-0 w-2 h-2/3 bg-[#385170]/25 rounded-full" />
-          </div>
-          <div className="mt-3 text-xs text-gray-500">
-            Scroll to reveal each step.
-          </div>
-        </div>
-      </div>
+    <div className="mt-8 relative">
+      {/* vertical line */}
+      <div className="absolute left-5 top-0 bottom-0 w-px bg-gray-200" />
 
-      {/* Right: steps */}
-      <div className="relative">
-        {/* vertical line */}
-        <div className="absolute left-5 top-0 bottom-0 w-px bg-gray-200" />
-
-        <div className="space-y-6">
-          {steps.map((s) => (
-            <StepCard key={s.n} step={s} />
-          ))}
-        </div>
+      <div className="space-y-6">
+        {steps.map((s) => (
+          <StepCard key={s.n} step={s} />
+        ))}
       </div>
     </div>
   );
@@ -126,16 +109,16 @@ function StepCard({
   const { ref, inView } = useInView({ threshold: 0.25 });
 
   return (
-    <div ref={ref} className="relative pl-14">
+    <div ref={ref} className="relative pl-16">
       {/* number bubble */}
-      <div className="absolute left-0 top-5 w-10 h-10 rounded-xl bg-[#385170]/10 flex items-center justify-center border border-gray-200">
+      <div className="absolute left-0 top-5 w-10 h-10 rounded-full bg-[#385170]/10 flex items-center justify-center border border-gray-200">
         <span className="font-bold text-[#142d4c]">{step.n}</span>
       </div>
 
       {/* animated card */}
       <div
         className={[
-          "rounded-2xl border border-gray-200 bg-white p-6 shadow-sm transition-all duration-700",
+          "rounded-3xl border border-gray-200 bg-white p-6 shadow-sm transition-all duration-700",
           inView
             ? "opacity-100 translate-y-0 scale-100"
             : "opacity-0 translate-y-6 scale-[0.98]",
