@@ -6,12 +6,16 @@ import { rankKeywordsWithLlm } from "../services/llm/llmClient.js";
 
 type LlmStatus = "ok" | "timeout" | "error" | "skipped";
 
-export async function analyzeController(req: FastifyRequest, reply: FastifyReply) {
+export async function analyzeController(
+  req: FastifyRequest,
+  reply: FastifyReply
+) {
+  // 0) Validate request body
   const parsed = AnalyzeBodySchema.safeParse(req.body);
   if (!parsed.success) {
     return reply.code(400).send({
       error: "Invalid JSON body",
-      details: parsed.error.flatten()
+      details: parsed.error.flatten(),
     });
   }
 
@@ -19,36 +23,41 @@ export async function analyzeController(req: FastifyRequest, reply: FastifyReply
   const topK = parsed.data.options?.topK ?? 20;
   const useLlm = parsed.data.options?.useLlm ?? true;
 
-  // 1) deterministic candidate keywords
+  // 1) Deterministic candidate extraction from JD
   const candidates = extractCandidateKeywords(jdText);
 
-  // 2) LLM ranks candidates (best-effort)
+  // 2) Deterministic scoring (ALWAYS runs)
+  const importantKeywords = candidates.slice(0, topK);
+  const scoring = scoreResumeAgainstKeywords(resumeText, importantKeywords);
+
+  // 3) Optional LLM advice ONLY for missing keywords
   let rankedImportant: any[] = [];
   let llmStatus: LlmStatus = "skipped";
 
-  if (useLlm) {
+  const missingForLlm = scoring.missingKeywords;
+
+  if (useLlm && missingForLlm.length > 0) {
     try {
-      rankedImportant = await rankKeywordsWithLlm({ jdText, candidates, topK });
+      const llmRes = await rankKeywordsWithLlm({
+        jdText,
+        resumeText,
+        candidates: missingForLlm, // <-- ONLY missing
+        topK,
+      });
+
+      rankedImportant = llmRes?.rankedImportant ?? [];
       llmStatus = "ok";
     } catch (e: any) {
       llmStatus = e?.name === "AbortError" ? "timeout" : "error";
     }
   }
 
-  // fallback if LLM fails
-  const importantKeywords =
-    rankedImportant.length > 0
-      ? rankedImportant.map((x) => String(x.keyword).toLowerCase())
-      : candidates.slice(0, topK);
-
-  // 3) deterministic scoring
-  const scoring = scoreResumeAgainstKeywords(resumeText, importantKeywords);
-
+  // 4) Final response
   return reply.send({
     matchPercent: scoring.matchPercent,
     matchedKeywords: scoring.matchedKeywords,
     missingKeywords: scoring.missingKeywords,
     rankedImportant,
-    llmStatus
+    llmStatus,
   });
 }
