@@ -9,7 +9,7 @@ Upload your resume, paste a job description, and get:
 
 ⸻
 
-#✨ Features
+# ✨ Features
 	•	📄 Resume PDF parsing
 	•	📊 Keyword-based resume scoring
 	•	🤖 LLM-powered ranking & improvement suggestions
@@ -18,7 +18,7 @@ Upload your resume, paste a job description, and get:
 
 ⸻
 
-#🛠 Tech Stack
+# 🛠 Tech Stack
 
 Frontend
 	•	React + TypeScript
@@ -31,7 +31,7 @@ Backend
 
 ⸻
 
-#🚀 How It Works
+# 🚀 How It Works
 	1.	Upload a resume (PDF)
 	2.	Paste a job description
 	3.	Backend extracts & scores keywords
@@ -53,13 +53,13 @@ Some data, listings, and tickets are placeholders.
 Product Manager: Hamza Mustafa
 
 **Engineering Team:**
-Frontend Work: Behruz Omonullaev + Hamza Mustafa
+Frontend Work: Behruz Omonullaev + Hamza Mustafa  
 Backend Work: Behruz Omonullaev
 
 **Quality and Control Team:**
-Quality Assurance Lead: Xin Luo
-Lead Specialist Designer: Kaori Shimoda
-Coordinator: Alex Buenaseda
+Quality Assurance Lead: Xin Luo  
+Lead Specialist Designer: Kaori Shimoda  
+Coordinator: Alex Buenaseda  
 
 
 ⸻
